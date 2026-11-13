@@ -35,6 +35,19 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Tests
+
+```bash
+pnpm test       # component tests (Vitest + Testing Library, jsdom)
+pnpm test:e2e   # browser tests (Playwright); builds and starts the app on port 3100
+```
+
+The tests check what a user sees and does, not implementation details:
+- **Contact form** (`src/components/sections/ContactForm.test.tsx`): an empty submit shows an error on every field, focuses the first one and announces the count; a valid submit shows "Sending…" and then the success message, which gets focus.
+- **Mobile menu** (`e2e/mobile-menu.spec.ts`): opens and closes with the toggle and with Escape (focus returns to the toggle); choosing a link closes it and scrolls to the section.
+
+The menu runs in a real browser because it depends on CSS (`hidden`, the `lg` breakpoint) and on `matchMedia`, which jsdom does not implement. Playwright uses the installed Google Chrome (`channel: "chrome"`) at the 402px width of the mobile frame. Without Chrome, run `pnpm exec playwright install chrome`.
+
 ## Design decisions
 
 ### Inconsistencies found in the Figma file
