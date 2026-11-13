@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
 // Both are variable fonts, so every weight comes from a single file.
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to main content
         </a>
+        <Header />
         <main id="main-content">{children}</main>
       </body>
     </html>

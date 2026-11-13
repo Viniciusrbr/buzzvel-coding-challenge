@@ -21,6 +21,9 @@
 
   /* Content width of the 1280px desktop frame (1280 - 2 × 80px padding). */
   --container-content: 70rem;
+
+  /* Sticky header height, 1px bottom border included (h-header, scroll offset). */
+  --spacing-header: 4.375rem; /* 70px */
 }
 
 /*
@@ -137,6 +140,17 @@
   :root {
     /* Focus ring color. Sections with a dark/blue background override it. */
     --focus-color: var(--color-primary);
+  }
+
+  /* Anchor targets (#section links, skip link) land below the sticky header. */
+  html {
+    scroll-padding-top: var(--spacing-header);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
