@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { StarIcon } from "@/components/icons/StarIcon";
+import { AvatarStack } from "@/components/ui/AvatarStack";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Heading } from "@/components/ui/Heading";
@@ -45,18 +46,7 @@ export function Hero() {
           </div>
 
           <div className="mt-8 flex items-center justify-center gap-3 sm:justify-start">
-            <div className="flex -space-x-2">
-              {hero.learners.avatars.map((src) => (
-                <Image
-                  key={src}
-                  src={src}
-                  alt=""
-                  width={32}
-                  height={32}
-                  className="size-8 rounded-full"
-                />
-              ))}
-            </div>
+            <AvatarStack avatars={hero.learners.avatars} size={32} />
             <p className="text-body-1 text-muted">
               <strong className="font-semibold text-ink">
                 Trusted by {hero.learners.count}

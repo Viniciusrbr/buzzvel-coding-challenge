@@ -18,6 +18,7 @@
   --color-peach: #ffcb9f;
   --color-line: #dbdfeb;
   --color-line-light: #e7e7ec;
+  --color-muted-on-dark: #9e9faa; /* footer links and tagline (6.6:1 on ink) */
   /* Not in Figma (no error state designed): form errors, 5.6:1 on white. */
   --color-error: #c62828;
 

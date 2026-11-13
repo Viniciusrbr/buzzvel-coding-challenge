@@ -52,9 +52,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ### Layout without a design
 - **Tablet:** there is no tablet frame. The header uses the mobile menu below 1024px, where the full navigation no longer fits. Categories use 2 columns from 768px. Hero, Featured course, How it works, the testimonial, The people and Contact stay stacked until 1024px. The people collage is exported as one image per layout (desktop and mobile are different compositions). `<picture>` shows the desktop one from 768px, where its 535px width fits, and the mobile one below that.
+- **Final CTA shapes:** the mobile frame has none, so they appear from 1024px only. They keep their design size, centered on the section, and the section clips them, so they never cause horizontal scrolling.
+- **Footer:** the mobile layout (Explore and Company side by side, Support below) is used until 1024px.
 
 ### Links
 - There are no other pages, so navigation and CTAs point to page sections. Actions that would need an account or a page of their own ("Log in", "View course", "Explore teachers and students") lead to the final call to action.
+- "Join Luma" (sign-up is out of scope) leads to the contact form. Footer links without a matching section (Careers, Journal, Terms, Privacy) lead there too.
 
 ### Contact form
 - There is no backend: submitting validates on the client (required fields, email format), waits 1.5s to simulate a request and shows a success message.
