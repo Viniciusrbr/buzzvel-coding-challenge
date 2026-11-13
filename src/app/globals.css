@@ -24,6 +24,9 @@
 
   /* Sticky header height, 1px bottom border included (h-header, scroll offset). */
   --spacing-header: 4.375rem; /* 70px */
+
+  /* Soft shadow of floating white cards (hero badges, form card). */
+  --shadow-card: 0 4px 24px 0 rgb(23 27 44 / 0.08);
 }
 
 /*
