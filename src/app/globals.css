@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Remove Tailwind's default palette: only design colors can be used. */
+  --color-*: initial;
+
+  --color-white: #ffffff;
+  --color-ink: #171b2c; /* Figma "text-primary": headings, body, footer bg */
+  --color-muted: #656770; /* paragraphs and nav links */
+  --color-subtle: #6d7384; /* small supporting text on white (card copy, stat labels) */
+  --color-primary: #3157f6; /* Figma "primary-blue" */
+  --color-primary-light: #e2e8ff; /* number badges, icon backgrounds, decorative circles */
+  --color-cream: #f9f8f3; /* Figma "background-light-yellow" */
+  --color-yellow: #ffee7e;
+  --color-yellow-light: #fff1c2;
+  --color-yellow-dark: #e9d659;
+  --color-orange: #ff704d;
+  --color-peach: #ffcb9f;
+  --color-line: #dbdfeb;
+  --color-line-light: #e7e7ec;
+
+  /* Content width of the 1280px desktop frame (1280 - 2 × 80px padding). */
+  --container-content: 70rem;
 }
 
+/*
+ * next/font exposes each font as a CSS variable on <html>.
+ * `inline` makes the utilities use var(--font-inter) directly.
+ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-jakarta);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility text-h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-size: 2.5rem; /* 40px */
+  line-height: 2.75rem; /* 44px */
+  @variant lg {
+    font-size: 4rem; /* 64px */
+    line-height: 4.375rem; /* 70px */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility text-h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+  @variant lg {
+    font-size: 3.5rem; /* 56px */
+    line-height: 4rem; /* 64px */
+  }
+}
+
+@utility text-h3 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-size: 2rem; /* 32px */
+  line-height: 2.25rem; /* 36px */
+  @variant lg {
+    font-size: 3rem; /* 48px */
+    line-height: 3.5rem; /* 56px */
+  }
+}
+
+@utility text-h4 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-size: 1.75rem; /* 28px */
+  line-height: 2rem; /* 32px */
+  @variant lg {
+    font-size: 2.5rem; /* 40px */
+    line-height: 3rem; /* 48px */
+  }
+}
+
+/* Card / step titles: same family, lighter weight, no negative tracking. */
+@utility text-h5 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+  @variant lg {
+    line-height: 2rem; /* 32px */
+  }
+}
+
+@utility text-subtitle-1 {
+  font-size: 1rem; /* 16px */
+  line-height: 1.625rem; /* 26px */
+  @variant lg {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
+  }
+}
+
+@utility text-subtitle-2 {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5rem; /* 24px */
+  @variant lg {
+    font-size: 1rem; /* 16px */
+    line-height: 1.75rem; /* 28px */
+  }
+}
+
+@utility text-quote {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.25rem; /* 20px */
+  line-height: 2rem; /* 32px */
+  @variant lg {
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.75rem; /* 44px */
+  }
+}
+
+@utility text-body-1 {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5rem; /* 24px */
+}
+
+@utility text-overline {
+  font-weight: 600;
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+  letter-spacing: 0.12em; /* 1.44px */
+  text-transform: uppercase;
+}
+
+@layer base {
+  :root {
+    /* Focus ring color. Sections with a dark/blue background override it. */
+    --focus-color: var(--color-primary);
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+  }
+
+  /* Visible focus for keyboard users on every interactive element. */
+  :focus-visible {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 3px;
+  }
+
+  /* Tailwind v4 resets buttons to cursor: default. */
+  button:not(:disabled) {
+    cursor: pointer;
+  }
 }
