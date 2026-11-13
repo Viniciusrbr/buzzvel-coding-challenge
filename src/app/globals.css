@@ -18,6 +18,8 @@
   --color-peach: #ffcb9f;
   --color-line: #dbdfeb;
   --color-line-light: #e7e7ec;
+  /* Not in Figma (no error state designed): form errors, 5.6:1 on white. */
+  --color-error: #c62828;
 
   /* Content width of the 1280px desktop frame (1280 - 2 × 80px padding). */
   --container-content: 70rem;
