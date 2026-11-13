@@ -8,7 +8,6 @@ type Hero = {
   secondaryCta: NavLink;
   /** Width/height: rendered size at 1x (the file is exported at 2x). */
   image: { src: string; alt: string; width: number; height: number };
-  courses: { value: string; label: string };
   rating: { value: number; max: number };
   learners: { count: string; avatars: string[] };
 };
@@ -29,7 +28,6 @@ export const hero: Hero = {
     width: 500,
     height: 520,
   },
-  courses: { value: "120+", label: "expert-led courses" },
   rating: { value: 4.9, max: 5 },
   learners: {
     count: "24,000+",

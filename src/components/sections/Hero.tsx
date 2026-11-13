@@ -6,6 +6,7 @@ import { Heading } from "@/components/ui/Heading";
 import { Overline } from "@/components/ui/Overline";
 import { Section } from "@/components/ui/Section";
 import { hero } from "@/data/hero";
+import { stats } from "@/data/stats";
 
 /*
  * Rendered photo width per layout, so the browser downloads the right file:
@@ -103,9 +104,9 @@ function HeroMedia() {
 
       <p className="absolute top-1.5 -left-2 flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-body-1 shadow-card md:top-4 md:-left-5.5">
         <span className="rounded-md bg-primary-light px-1.5 py-0.75 font-bold text-primary">
-          {hero.courses.value}
+          {stats.courses.value}
         </span>{" "}
-        {hero.courses.label}
+        {stats.courses.label}
       </p>
 
       <p className="absolute -right-4.5 bottom-9 flex items-center gap-2.5 rounded-xl bg-white px-4 py-2.5 text-body-1 shadow-card md:-right-14">
