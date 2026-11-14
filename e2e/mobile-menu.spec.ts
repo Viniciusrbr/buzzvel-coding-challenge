@@ -23,6 +23,23 @@ test("opens and closes with the toggle and with Escape", async ({ page }) => {
   await expect(toggle).toBeFocused();
 });
 
+test("closes when focus leaves it, so focus is never hidden behind it", async ({
+  page,
+}) => {
+  const toggle = page.getByRole("button", { name: "Toggle menu" });
+  const menu = page.getByRole("navigation", { name: "Main" });
+  await toggle.click();
+
+  // Tab through the panel: 4 nav links, "Log in", "Start learning", then out.
+  for (let i = 0; i < 7; i++) await page.keyboard.press("Tab");
+
+  await expect(menu).toBeHidden();
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(
+    page.getByRole("link", { name: "Explore courses", exact: true }),
+  ).toBeFocused();
+});
+
 test("closes after a link is chosen and goes to its section", async ({
   page,
 }) => {

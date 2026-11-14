@@ -1,10 +1,12 @@
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/cn";
 
+// Every variant has a border: in forced colors mode (Windows High Contrast)
+// backgrounds are removed, and the transparent border becomes the button's outline.
 const variants = {
-  primary: "bg-primary text-white hover:bg-primary/90",
-  secondary: "border border-line bg-white text-ink hover:border-ink",
-  yellow: "bg-yellow text-ink hover:bg-yellow-dark",
+  primary: "border-transparent bg-primary text-white hover:bg-primary/90",
+  secondary: "border-line bg-white text-ink hover:border-ink",
+  yellow: "border-transparent bg-yellow text-ink hover:bg-yellow-dark",
 } as const;
 
 const sizes = {
@@ -30,7 +32,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-lg text-center text-sm font-semibold",
+    "inline-flex items-center justify-center gap-2 rounded-lg border text-center text-sm font-semibold",
     "transition-colors motion-reduce:transition-none",
     "disabled:cursor-not-allowed disabled:opacity-60",
     variants[variant],

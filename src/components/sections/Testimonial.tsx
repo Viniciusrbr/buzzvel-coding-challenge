@@ -45,11 +45,13 @@ export function Testimonial() {
 
         {/* Label (dt) comes first in the DOM, so it reads "active learners: 24K+";
             order-first shows the number on top. */}
-        <dl className="grid grid-cols-3 lg:grid-cols-1 lg:gap-y-4">
+        <dl className="grid grid-cols-3 gap-x-3 lg:grid-cols-1 lg:gap-y-4">
           {Object.values(stats).map((stat) => (
             <div key={stat.label} className="flex flex-col">
               <dt className="mt-1 text-body-1 text-subtle">{stat.label}</dt>
-              <dd className="order-first text-h1 text-primary">{stat.value}</dd>
+              <dd className="order-first text-stat text-primary">
+                {stat.value}
+              </dd>
             </div>
           ))}
         </dl>

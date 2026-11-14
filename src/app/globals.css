@@ -89,6 +89,23 @@
   }
 }
 
+/*
+ * Stat numbers: the H1 style, but on phones the three numbers share one row.
+ * Below ~400px the size follows the viewport, so "24K+" (≈2.6em wide) always
+ * fits its column: no overlap at 320px (WCAG 1.4.10 Reflow).
+ */
+@utility text-stat {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -1px;
+  font-size: min(2.5rem, 12.8vw - 0.5rem); /* 40px max */
+  line-height: 1.1; /* 44px at 40px */
+  @variant lg {
+    font-size: 4rem; /* 64px */
+    line-height: 4.375rem; /* 70px */
+  }
+}
+
 /* Card / step titles: same family, lighter weight, no negative tracking. */
 @utility text-h5 {
   font-family: var(--font-heading);

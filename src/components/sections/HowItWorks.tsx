@@ -63,7 +63,8 @@ export function HowItWorks() {
                 />
               )}
 
-              <p aria-hidden="true" className="mt-6 text-overline text-subtle">
+              {/* text-muted, not the lighter Figma gray: that one is 4.45:1 on cream. */}
+              <p aria-hidden="true" className="mt-6 text-overline text-muted">
                 Step {String(index + 1).padStart(2, "0")}
               </p>
               <Heading as="h3" variant="h5" className="mt-2">

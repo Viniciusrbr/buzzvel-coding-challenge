@@ -17,6 +17,7 @@ const DESKTOP_QUERY = "(min-width: 64rem)";
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
 
   useEffect(() => {
@@ -36,10 +37,23 @@ export function MobileMenu() {
       if (event.matches) setIsOpen(false);
     }
 
+    // Tabbing out of the panel would put focus on page content hidden behind
+    // it (WCAG 2.4.11 Focus Not Obscured), so the panel closes instead.
+    function handleFocusIn(event: FocusEvent) {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      const insideMenu =
+        toggleRef.current?.contains(target) ||
+        panelRef.current?.contains(target);
+      if (!insideMenu) setIsOpen(false);
+    }
+
     document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("focusin", handleFocusIn);
     desktop.addEventListener("change", handleBreakpointChange);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("focusin", handleFocusIn);
       desktop.removeEventListener("change", handleBreakpointChange);
     };
   }, [isOpen]);
@@ -64,6 +78,7 @@ export function MobileMenu() {
       </button>
 
       <div
+        ref={panelRef}
         id={panelId}
         hidden={!isOpen}
         // Positioned against the sticky <header>; its top border overlaps the header's.

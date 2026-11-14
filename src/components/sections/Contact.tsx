@@ -27,36 +27,37 @@ export function Contact() {
             {contactSection.description}
           </p>
 
+          {/* A <div> inside <dl> may only hold <dt>/<dd>, so the icon lives in
+              the <dt> and is positioned in the card's left padding
+              (20px edge + 40px icon + 16px gap = pl-19). */}
           <dl className="mt-8 flex flex-col gap-4 lg:mt-10">
             {contactDetails.map((detail) => (
               <div
                 key={detail.label}
-                className="flex items-center gap-4 rounded-xl bg-cream px-5 py-4 lg:py-5"
+                className="relative rounded-xl bg-cream py-4 pr-5 pl-19 lg:py-5"
               >
-                <span
-                  aria-hidden="true"
-                  className="grid size-10 shrink-0 place-items-center rounded-lg bg-primary-light text-primary"
-                >
-                  {detailIcons[detail.icon]}
-                </span>
-                <div>
-                  <dt className="text-sm leading-6 font-medium">
-                    {detail.label}
-                  </dt>
-                  {/* text-muted, not the lighter Figma gray: that one is 4.45:1 on cream. */}
-                  <dd className="mt-0.5 text-body-1 text-muted">
-                    {detail.href ? (
-                      <a
-                        href={detail.href}
-                        className="text-primary underline-offset-4 hover:underline"
-                      >
-                        {detail.value}
-                      </a>
-                    ) : (
-                      detail.value
-                    )}
-                  </dd>
-                </div>
+                <dt className="text-sm leading-6 font-medium">
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-1/2 left-5 grid size-10 -translate-y-1/2 place-items-center rounded-lg bg-primary-light text-primary"
+                  >
+                    {detailIcons[detail.icon]}
+                  </span>
+                  {detail.label}
+                </dt>
+                {/* text-muted, not the lighter Figma gray: that one is 4.45:1 on cream. */}
+                <dd className="mt-0.5 text-body-1 text-muted">
+                  {detail.href ? (
+                    <a
+                      href={detail.href}
+                      className="text-primary underline-offset-4 hover:underline"
+                    >
+                      {detail.value}
+                    </a>
+                  ) : (
+                    detail.value
+                  )}
+                </dd>
               </div>
             ))}
           </dl>

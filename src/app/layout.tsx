@@ -50,7 +50,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <a
           href="#main-content"
-          className="sr-only rounded-lg bg-ink px-4 py-3 text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
+          // Padding is set with focus: too, because not-sr-only resets it to 0.
+          className="sr-only rounded-lg bg-ink text-sm font-semibold text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-3"
         >
           Skip to main content
         </a>
