@@ -49,17 +49,18 @@ export function HowItWorks() {
         </div>
 
         {/* Screen readers announce "1 of 3", so the visual "Step 01" is hidden from them. */}
-        <ol className="mt-10 grid gap-y-18 lg:mt-26 lg:grid-cols-3 lg:gap-x-10">
+        <ol className="mt-10 grid gap-y-18 md:mt-16 md:grid-cols-3 md:gap-x-10 lg:mt-26">
           {steps.map((step, index) => (
             <li key={step.title} className="relative">
               <span aria-hidden="true">{stepIcons[step.icon]}</span>
 
               {/* Connector to the next step: vertical in the gap below on
-                  small screens, horizontal from icon to icon on desktop. */}
+                  phones, horizontal from icon to icon from tablet up
+                  (column + 40px gap − 56px icon = 100% − 1rem). */}
               {index < steps.length - 1 && (
                 <span
                   aria-hidden="true"
-                  className="absolute top-full left-7 mt-6 h-12 w-px bg-line lg:top-7 lg:left-14 lg:mt-0 lg:h-px lg:w-[calc(100%-1rem)]"
+                  className="absolute top-full left-7 mt-6 h-12 w-px bg-line md:top-7 md:left-14 md:mt-0 md:h-px md:w-[calc(100%-1rem)]"
                 />
               )}
 

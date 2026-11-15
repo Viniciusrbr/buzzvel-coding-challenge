@@ -29,8 +29,9 @@ export function Hero() {
     >
       {/* 540fr/500fr = the 540px text and 500px photo columns of the 1280px frame. */}
       <Container className="grid gap-y-10 lg:grid-cols-[540fr_500fr] lg:gap-x-12 xl:gap-x-20">
-        {/* min-w-0: the wider h1 below must not widen this grid column. */}
-        <div className="min-w-0">
+        {/* min-w-0: the wider h1 below must not widen this grid column.
+            Tablet: same 500px centered column as the photo, so their edges line up. */}
+        <div className="min-w-0 md:mx-auto md:w-full md:max-w-125 lg:mx-0 lg:max-w-none">
           <Overline>{hero.overline}</Overline>
           {/* "actually move you" is ~551px at 64px, a bit wider than the 540px
               column: 35rem keeps the 3-line break of the design (it runs into the gap). */}

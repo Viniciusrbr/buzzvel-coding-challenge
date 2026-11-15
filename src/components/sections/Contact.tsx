@@ -30,7 +30,8 @@ export function Contact() {
           {/* A <div> inside <dl> may only hold <dt>/<dd>, so the icon lives in
               the <dt> and is positioned in the card's left padding
               (20px edge + 40px icon + 16px gap = pl-19). */}
-          <dl className="mt-8 flex flex-col gap-4 lg:mt-10">
+          {/* Side by side on tablet, where the column is full width. */}
+          <dl className="mt-8 grid gap-4 md:grid-cols-2 lg:mt-10 lg:grid-cols-1">
             {contactDetails.map((detail) => (
               <div
                 key={detail.label}

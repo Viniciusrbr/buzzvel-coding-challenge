@@ -8,9 +8,10 @@ export function Footer() {
     <footer className="bg-ink text-line-light [--focus-color:var(--color-white)]">
       <Container className="pt-15 pb-5 lg:pt-20 lg:pb-10">
         {/* Mobile: brand on top, Explore | Company, then Support below.
+            Tablet: brand on top, the 3 link columns in one row.
             Desktop: brand + 3 columns (448/240/240/192px in the 1280px frame). */}
-        <div className="grid grid-cols-2 gap-10 lg:grid-cols-[448fr_240fr_240fr_192fr] lg:gap-0">
-          <div className="col-span-2 lg:col-span-1">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-[448fr_240fr_240fr_192fr] lg:gap-0">
+          <div className="col-span-full lg:col-span-1">
             <Logo className="text-white" />
             <p className="mt-1.5 text-body-1 text-muted-on-dark lg:max-w-56">
               {footer.tagline}

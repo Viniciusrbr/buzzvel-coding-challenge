@@ -10,10 +10,11 @@ import { sectionIds } from "@/data/navigation";
 
 /*
  * Rendered photo width: 538px from xl, ~40vw on lg (538 / 1060 of the
- * container), full container width when stacked (side padding 40px / 20px).
+ * container), half the container on tablet ((100vw − 2 × 40px − 40px gap) / 2),
+ * full container width on phones (side padding 20px).
  */
 const photoSizes =
-  "(min-width: 80rem) 538px, (min-width: 64rem) 40vw, (min-width: 48rem) calc(100vw - 5rem), calc(100vw - 2.5rem)";
+  "(min-width: 80rem) 538px, (min-width: 64rem) 40vw, (min-width: 48rem) calc(50vw - 3.75rem), calc(100vw - 2.5rem)";
 
 export function FeaturedCourse() {
   return (
@@ -22,8 +23,9 @@ export function FeaturedCourse() {
       id={sectionIds.featuredCourse}
       aria-labelledby="featured-title"
     >
-      {/* 538fr/522fr = the photo and text columns of the 1280px frame. */}
-      <Container className="grid items-center gap-y-10 lg:grid-cols-[538fr_522fr] lg:gap-x-15">
+      {/* Tablet: two equal columns, so the photo does not fill the screen.
+          Desktop: 538fr/522fr = the photo and text columns of the 1280px frame. */}
+      <Container className="grid items-center gap-y-10 md:grid-cols-2 md:gap-x-10 lg:grid-cols-[538fr_522fr] lg:gap-x-15">
         <div className="relative">
           <p className="absolute -top-3 -left-3 rounded bg-yellow px-3 py-1.5 text-overline text-ink">
             {course.badge}
@@ -63,7 +65,8 @@ export function FeaturedCourse() {
             ))}
           </ul>
 
-          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-7">
+          {/* Wraps in the narrower tablet column instead of overflowing it. */}
+          <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
             <Button href={course.primaryCta.href} variant="yellow">
               {course.primaryCta.label}
             </Button>
