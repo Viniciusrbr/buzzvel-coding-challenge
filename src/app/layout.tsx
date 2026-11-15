@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { brandColors } from "@/lib/brand-colors";
 import "./globals.css";
 
 // Both are variable fonts, so every weight comes from a single file.
@@ -21,9 +22,18 @@ const title = "Luma — Build skills that actually move you forward";
 const description =
   "Practical courses taught by people who do the work every day. Learn design, technology, business and more — one focused lesson at a time.";
 
+/**
+ * Base for absolute URLs (og:url, og:image). SITE_URL wins; on Vercel the
+ * production domain is used automatically; localhost only in development.
+ */
+const siteUrl =
+  process.env.SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
-  // Needed to turn relative URLs (like openGraph.url) into absolute ones.
-  metadataBase: new URL(process.env.SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(siteUrl),
   title,
   description,
   openGraph: {
@@ -38,7 +48,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   // Matches the header background (--color-cream) in mobile browser UI.
-  themeColor: "#f9f8f3",
+  themeColor: brandColors.cream,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
