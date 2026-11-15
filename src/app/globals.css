@@ -98,7 +98,8 @@
   font-family: var(--font-heading);
   font-weight: 800;
   letter-spacing: -1px;
-  font-size: min(2.5rem, 12.8vw - 0.5rem); /* 40px max */
+  /* 28–40px; reaches 40px at ~375px, so 402px and up keep the Figma size. */
+  font-size: clamp(1.75rem, 12.8vw - 0.5rem, 2.5rem);
   line-height: 1.1; /* 44px at 40px */
   @variant lg {
     font-size: 4rem; /* 64px */

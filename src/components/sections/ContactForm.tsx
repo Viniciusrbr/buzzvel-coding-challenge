@@ -72,7 +72,7 @@ export function ContactForm({ labelledBy }: ContactFormProps) {
     firstInvalidField.current = null;
   }, [submitCount, setFocus]);
 
-  // The submit button was disabled (and lost focus): move focus to the result.
+  // The form (and the focused submit button) is replaced: move focus to the result.
   useEffect(() => {
     if (isSubmitSuccessful) successRef.current?.focus();
   }, [isSubmitSuccessful]);
@@ -99,7 +99,7 @@ export function ContactForm({ labelledBy }: ContactFormProps) {
         <form
           noValidate
           aria-labelledby={labelledBy}
-          // Ignore Enter in a field while the fake request is running.
+          // Ignore new submits (button or Enter) while the fake request is running.
           onSubmit={(event) =>
             isSubmitting ? event.preventDefault() : submit(event)
           }
@@ -151,7 +151,13 @@ export function ContactForm({ labelledBy }: ContactFormProps) {
             );
           })}
 
-          <Button type="submit" disabled={isSubmitting} className="mt-1 w-full">
+          {/* aria-disabled instead of disabled: a disabled button loses focus,
+              which would drop the keyboard user back to the top of the page. */}
+          <Button
+            type="submit"
+            aria-disabled={isSubmitting || undefined}
+            className="mt-1 w-full"
+          >
             {isSubmitting ? (
               <>
                 <SpinnerIcon className="motion-safe:animate-spin" />

@@ -11,7 +11,7 @@ const variants = {
 
 const sizes = {
   sm: "min-h-11 px-5", // 44px — header CTA
-  md: "min-h-13 px-7", // 52px — default
+  md: "min-h-13.5 px-7", // 54px — default (Figma)
 } as const;
 
 type StyleProps = {
@@ -34,7 +34,8 @@ export function Button({
   const classes = cn(
     "inline-flex items-center justify-center gap-2 rounded-lg border text-center text-sm font-semibold",
     "transition-colors motion-reduce:transition-none",
-    "disabled:cursor-not-allowed disabled:opacity-60",
+    // aria-disabled: looks disabled but stays focusable (e.g. the form while sending).
+    "disabled:cursor-not-allowed disabled:opacity-60 aria-disabled:cursor-not-allowed aria-disabled:opacity-60",
     variants[variant],
     sizes[size],
     className,

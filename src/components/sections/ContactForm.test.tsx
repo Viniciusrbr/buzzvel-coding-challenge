@@ -42,7 +42,10 @@ it("sends a valid message and shows the success state", async () => {
   await user.type(screen.getByLabelText("Your question"), "Team plans?");
   await user.click(screen.getByRole("button", { name: "Send message" }));
 
-  expect(screen.getByRole("button", { name: "Sending…" })).toBeDisabled();
+  // Blocked while sending, but it keeps focus.
+  const sending = screen.getByRole("button", { name: "Sending…" });
+  expect(sending).toHaveAttribute("aria-disabled", "true");
+  expect(sending).toHaveFocus();
 
   // The fake request takes 1.5s.
   const title = await screen.findByText("Message sent", {}, { timeout: 3000 });

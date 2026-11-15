@@ -29,9 +29,12 @@ export function Hero() {
     >
       {/* 540fr/500fr = the 540px text and 500px photo columns of the 1280px frame. */}
       <Container className="grid gap-y-10 lg:grid-cols-[540fr_500fr] lg:gap-x-12 xl:gap-x-20">
-        <div>
+        {/* min-w-0: the wider h1 below must not widen this grid column. */}
+        <div className="min-w-0">
           <Overline>{hero.overline}</Overline>
-          <Heading as="h1" id="hero-title" className="mt-4">
+          {/* "actually move you" is ~551px at 64px, a bit wider than the 540px
+              column: 35rem keeps the 3-line break of the design (it runs into the gap). */}
+          <Heading as="h1" id="hero-title" className="mt-4 xl:w-140">
             {hero.title}
           </Heading>
           <p className="mt-6 max-w-120 text-subtitle-1 text-muted">
