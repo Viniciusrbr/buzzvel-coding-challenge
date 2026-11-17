@@ -32,7 +32,7 @@ pnpm build        # production build (the page is fully static)
 pnpm start        # serve the build
 pnpm lint         # Biome: lint + format check
 pnpm format       # Biome: write formatting
-pnpm typecheck    # tsc --noEmit
+# generates route types, then tsc --noEmit
 pnpm test         # component tests (Vitest)
 pnpm test:e2e     # browser tests (Playwright): builds and serves the app on port 3100
 ```
